@@ -13,7 +13,9 @@ void ofApp::update(){
     /* The update method is called muliple times per second
     It's in charge of updating variables and the logic of our app */
     ofSoundUpdate(); // Updates all sound players
-    visualizer.updateAmplitudes(); // Updates Amplitudes for visualizer
+    if (visualizer_running) {
+        visualizer.updateAmplitudes(); // Updates Amplitudes for visualizer
+    }
 }
 
 //--------------------------------------------------------------
@@ -36,7 +38,7 @@ void ofApp::drawMode1(vector<float> amplitudes){
         ofFill(); // Drawn Shapes will be filled in with color
         ofSetColor(256); // This resets the color of the "brush" to white
         ofDrawBitmapString("Rectangle Height Visualizer", 0, 15);
-        ofSetColor(189, 45, 135); 
+        ofSetColor(rgbMode1[0], rgbMode1[1], rgbMode1[2]); 
         ofDrawRectangle(2, ofGetHeight() - 100, 50,  amplitudes[0]);
 }
 void ofApp::drawMode2(vector<float> amplitudes){
@@ -72,6 +74,9 @@ void ofApp::keyPressed(int key){
         case '1':
             mode = '1';
             ofSetBackgroundColor(0, 255, 191);
+            rgbMode1[0] = ofRandom(256);
+            rgbMode1[1] = ofRandom(256);
+            rgbMode1[2] = ofRandom(256);
             
             break;
         case '2':
@@ -81,6 +86,11 @@ void ofApp::keyPressed(int key){
         case '3':
             mode = '3';
             ofSetBackgroundColor(239,231,79);
+            break;
+
+        case 'a':
+            
+            visualizer_running = !visualizer_running;
             break;
     }
 }
