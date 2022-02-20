@@ -5,7 +5,7 @@ void ofApp::setup(){
     sound.loadSound("beat.wav"); //Loads a sound file (in bin/data/)
     sound.setLoop(true); // Makes the song loop indefinitely
     sound.setVolume(1); // Sets the song volume
-    ofSetBackgroundColor(36, 32,56); // Sets the Background Color
+    ofSetBackgroundColor(0, 255, 191);; // Sets the Background Color
 }
 
 //--------------------------------------------------------------
@@ -71,12 +71,16 @@ void ofApp::keyPressed(int key){
             break;
         case '1':
             mode = '1';
+            ofSetBackgroundColor(0, 255, 191);
+            
             break;
         case '2':
             mode = '2';
+            ofSetBackgroundColor(247, 128, 231);
             break;
         case '3':
             mode = '3';
+            ofSetBackgroundColor(239,231,79);
             break;
     }
 }
