@@ -31,4 +31,5 @@ class ofApp : public ofBaseApp{
 		char mode = '1';
 		bool visualizer_running = true;
 		float rgbMode1[3] = {ofRandom(256), ofRandom(256), ofRandom(256)};
+		double rgbMode2[2] = {ofRandom(255), ofRandom(255)};
 };
