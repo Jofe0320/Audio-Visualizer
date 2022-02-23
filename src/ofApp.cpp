@@ -97,8 +97,10 @@ void ofApp::keyPressed(int key){
             visualizer_running = !visualizer_running;
             break;
         
-        // Todavia problemas contrlando el volumen bien 
-        case '-':
+
+        
+
+        case '-':                   // Decrease volume
             while(sound.getVolume()>0){
                 sound.setVolume(sound.getVolume()-0.1);
                 break;
@@ -106,7 +108,7 @@ void ofApp::keyPressed(int key){
             break;
              
           
-        case '=':
+        case '=':                  // Increase Volume
             while(sound.getVolume()<1){
                 sound.setVolume(sound.getVolume()+0.1);
                 break;

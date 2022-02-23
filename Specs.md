@@ -2,10 +2,10 @@
 In this project, you and your partner are expected to essentially complete the code you are given. The features you must add to this project are listed below, and divided by phases. Typically speaking, the features described in Phase 1 are easier than those in Phase 2, and those in Phase 2 are easier than those in Phase 3. 
 
 ## Phase 1: A WarmUp
-- Change the Background Color in each mode.
-- Change the Color of the Rectangle in mode 1 to be random.
+- Change the Background Color in each mode.   Done
+- Change the Color of the Rectangle in mode 1 to be random.   Done
     - Hint, use ofRandom().
-- Pressing the "a" key "pauses" the visualizer and 'a' "unpauses" the visualizer.
+- Pressing the "a" key "pauses" the visualizer and 'a' "unpauses" the visualizer.   Done
     - In other words, when the draw method is called, the rectangle shapes will not change unless the visualizer is unpaused.
 
 ## Phase 2: Special Keys
@@ -13,7 +13,7 @@ In this project, you and your partner are expected to essentially complete the c
    - Songs are available in the folder bin/data. If you are to add a song, it must be added in this folder, as it is where OpenFrameworks reads resources.
     - An example of this would perhaps be making it so that when the "d" key is pressed, "geesebeat.wav" is played. 
     - This must be done for four songs. 
-- Using the "=" key will raise the volume and the "-" key will lower it. 
+- Using the "=" key will raise the volume and the "-" key will lower it.   Done
     - In order to achieve this, 1 should be considered the max value, and 0 the minimum, as the setVolume() method accepts double numbers such as 0.2.
 - There must be 64 bars in the "Rectangle Height Visualizer". 
     - These bars must be nect to each other, left-to-right and must correspond to values in the "amplitudes" vector.
