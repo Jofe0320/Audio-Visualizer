@@ -23,6 +23,7 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
+		void playSong(string file);
 	private:
 		ofSoundPlayer sound;
 		AudioVisualizer visualizer;
@@ -32,4 +33,5 @@ class ofApp : public ofBaseApp{
 		bool visualizer_running = true;
 		float rgbMode1[3] = {ofRandom(256), ofRandom(256), ofRandom(256)};
 		double rgbMode2[2] = {ofRandom(255), ofRandom(255)};
+		string loaded_sound = "beat.wav";
 };

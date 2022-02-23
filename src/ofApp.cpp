@@ -2,7 +2,7 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    sound.loadSound("beat.wav"); //Loads a sound file (in bin/data/)
+    sound.loadSound(loaded_sound); //Loads a sound file (in bin/data/)
     sound.setLoop(true); // Makes the song loop indefinitely
     sound.setVolume(1); // Sets the song volume
     ofSetBackgroundColor(0, 255, 191);; // Sets the Background Color
@@ -16,6 +16,7 @@ void ofApp::update(){
     if (visualizer_running) {
         visualizer.updateAmplitudes(); // Updates Amplitudes for visualizer
     }
+    
 }
 
 //--------------------------------------------------------------
@@ -95,8 +96,54 @@ void ofApp::keyPressed(int key){
             
             visualizer_running = !visualizer_running;
             break;
+
+        case 'd':
+            playSong("geesebeat.wav");
+            break;
+
+        case 'f':
+            playSong("beat.wav");
+            break;
+
+        case 'g':
+            playSong("pigeon-coo.wav");
+            break;
+
+        case 'h':
+            playSong("rock-song.wav");
+            break;
+
+        case '-':                   // Decrease volume
+            while(sound.getVolume()>0){
+                sound.setVolume(sound.getVolume()-0.1);
+                break;
+            }
+            break;
+             
+          
+        case '=':                  // Increase Volume
+            while(sound.getVolume()<1){
+                sound.setVolume(sound.getVolume()+0.1);
+                break;
+            }
+            break;
+        
+
     }
 }
+
+void ofApp::playSong(string file) {
+    if (playing && loaded_sound != file) {
+        sound.stop();
+        sound.loadSound(file);
+        loaded_sound = file;
+        sound.play();
+    } else if (!playing) {
+        sound.loadSound(file);
+        loaded_sound = file;
+    }
+}     
+        
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
