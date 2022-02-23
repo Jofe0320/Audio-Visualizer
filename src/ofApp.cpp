@@ -16,6 +16,7 @@ void ofApp::update(){
     if (visualizer_running) {
         visualizer.updateAmplitudes(); // Updates Amplitudes for visualizer
     }
+    
 }
 
 //--------------------------------------------------------------
@@ -95,6 +96,23 @@ void ofApp::keyPressed(int key){
             
             visualizer_running = !visualizer_running;
             break;
+        
+        // Todavia problemas contrlando el volumen bien 
+        case '-':
+            while(sound.getVolume()>0){
+                sound.setVolume(sound.getVolume()-0.1);
+                break;
+            }
+            break;
+             
+          
+        case '=':
+            while(sound.getVolume()<1){
+                sound.setVolume(sound.getVolume()+0.1);
+                break;
+            }
+            break;
+        
     }
 }
 
