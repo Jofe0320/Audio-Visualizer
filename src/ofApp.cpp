@@ -39,8 +39,21 @@ void ofApp::drawMode1(vector<float> amplitudes){
         ofFill(); // Drawn Shapes will be filled in with color
         ofSetColor(256); // This resets the color of the "brush" to white
         ofDrawBitmapString("Rectangle Height Visualizer", 0, 15);
-        ofSetColor(rgbMode1[0], rgbMode1[1], rgbMode1[2]); 
-        ofDrawRectangle(2, ofGetHeight() - 100, 50,  amplitudes[0]);
+        
+      
+
+
+        
+        
+        for(int i=0; i< amplitudes.size(); i++){
+
+           
+            ofSetColor(rgbMode1[0], rgbMode1[1], rgbMode1[2]); 
+            ofDrawRectangle((ofGetScreenWidth()/64)*i, ofGetHeight() - 100, ofGetScreenWidth()/64, amplitudes[i]);   
+            
+            
+        }
+        
 }
 void ofApp::drawMode2(vector<float> amplitudes){
         ofSetLineWidth(5); // Sets the line width
