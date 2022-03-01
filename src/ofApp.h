@@ -34,4 +34,5 @@ class ofApp : public ofBaseApp{
 		float rgbMode1[3] = {ofRandom(256), ofRandom(256), ofRandom(256)};
 		double rgbMode2[2] = {ofRandom(255), ofRandom(255)};
 		string loaded_sound = "beat.wav";
+		float rgbMode3[3] = {ofRandom(256), ofRandom(256), ofRandom(256)};
 };

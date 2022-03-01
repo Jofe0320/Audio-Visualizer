@@ -6,6 +6,7 @@ void ofApp::setup(){
     sound.setLoop(true); // Makes the song loop indefinitely
     sound.setVolume(1); // Sets the song volume
     ofSetBackgroundColor(0, 255, 191);; // Sets the Background Color
+    
 }
 
 //--------------------------------------------------------------
@@ -39,19 +40,12 @@ void ofApp::drawMode1(vector<float> amplitudes){
         ofFill(); // Drawn Shapes will be filled in with color
         ofSetColor(256); // This resets the color of the "brush" to white
         ofDrawBitmapString("Rectangle Height Visualizer", 0, 15);
-        
-      
+    
+        for(int i=0; i < amplitudes.size(); i++){
 
-
-        
-        
-        for(int i=0; i< amplitudes.size(); i++){
-
-           
             ofSetColor(rgbMode1[0], rgbMode1[1], rgbMode1[2]); 
-            ofDrawRectangle((ofGetScreenWidth()/64)*i, ofGetHeight() - 100, ofGetScreenWidth()/64, amplitudes[i]);   
-            
-            
+            ofDrawRectangle((ofGetWindowWidth()/64)*i, ofGetHeight()-100, ofGetWindowWidth()/64, amplitudes[i]);   
+          
         }
         
 }
@@ -71,6 +65,15 @@ void ofApp::drawMode3(vector<float> amplitudes){
     ofSetColor(256); // This resets the color of the "brush" to white
     ofDrawBitmapString("Rectangle Width Visualizer", 0, 15);
     // YOUR CODE HERE
+    ofFill(); // Drawn Shapes will be filled in with color
+    ofSetColor(256); // This resets the color of the "brush" to white
+    
+    for(int i=0; i < amplitudes.size(); i++){
+
+        ofSetColor(rgbMode3[0], rgbMode3[1], rgbMode3[2]); 
+        ofDrawRectangle(ofGetWindowWidth(),(ofGetWindowWidth()/64)*i, amplitudes[i],ofGetWindowWidth()/64);   
+    }
+          
 }
 
 //--------------------------------------------------------------
@@ -103,6 +106,10 @@ void ofApp::keyPressed(int key){
         case '3':
             mode = '3';
             ofSetBackgroundColor(239,231,79);
+            rgbMode3[0] = ofRandom(256);
+            rgbMode3[1] = ofRandom(256);
+            rgbMode3[2] = ofRandom(256);
+
             break;
 
         case 'a':
