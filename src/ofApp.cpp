@@ -133,6 +133,18 @@ void ofApp::keyPressed(int key){
             playSong("rock-song.wav");
             break;
 
+        case 'v':
+            playSong("lasanta.wav");
+            break;
+
+        case 'b':
+            playSong("thespins.wav");
+            break;
+
+        case 'n':
+            playSong("walkingdream.wav");
+            break;
+
         case '-':                   // Decrease volume
             while(sound.getVolume()>0){
                 sound.setVolume(sound.getVolume()-0.1);
