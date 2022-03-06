@@ -1,4 +1,8 @@
 #include "ofApp.h"
+#include <vector>
+
+
+using namespace std;
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -17,8 +21,23 @@ void ofApp::update(){
     if (visualizer_running) {
         visualizer.updateAmplitudes(); // Updates Amplitudes for visualizer
     }
-    
+    if(playback == true){
+        
+        if(updateCounter%180 == 0){
+            if(replayFlag<actions.size()){
+                 replayKeys(actions[replayFlag-2]);
+               
+                 replayFlag += 1;
+            }
+            else{
+                playback = false;
+            }      
+        }
+    }
+    updateCounter+=1;
 }
+
+
 
 //--------------------------------------------------------------
 void ofApp::draw(){
@@ -40,13 +59,21 @@ void ofApp::drawMode1(vector<float> amplitudes){
         ofFill(); // Drawn Shapes will be filled in with color
         ofSetColor(256); // This resets the color of the "brush" to white
         ofDrawBitmapString("Rectangle Height Visualizer", 0, 15);
-    
         for(int i=0; i < amplitudes.size(); i++){
-
             ofSetColor(rgbMode1[0], rgbMode1[1], rgbMode1[2]); 
             ofDrawRectangle((ofGetWindowWidth()/64)*i, ofGetHeight()-100, ofGetWindowWidth()/64, amplitudes[i]);   
-          
         }
+        if(record == true){
+            ofSetColor(255,17,0); // This resets the color of the "brush" to white
+            ofDrawBitmapString("Recording...", (ofGetWindowWidth()-100), 15);
+        }
+        if(playback == true){
+            ofSetColor(0,0,0); // This resets the color of the "brush" to white
+            ofDrawBitmapString("Replaying...", (ofGetWindowWidth()-100), 15);
+        }
+
+
+
         
 }
 void ofApp::drawMode2(vector<float> amplitudes){
@@ -59,6 +86,14 @@ void ofApp::drawMode2(vector<float> amplitudes){
             ofSetColor((bands - i)*32 %256,rgbMode2[0],rgbMode2[1]); // Color varies between frequencies
             ofDrawCircle(ofGetWidth()/2, ofGetHeight()/2, amplitudes[0]/(i +1));
         }
+         if(record == true){
+            ofSetColor(255,17,0); // This resets the color of the "brush" to white
+            ofDrawBitmapString("Recording...", (ofGetWindowWidth()-100), 15);
+        }
+          if(playback == true){
+            ofSetColor(0,0,0); // This resets the color of the "brush" to white
+            ofDrawBitmapString("Replaying...", (ofGetWindowWidth()-100), 15);
+        }
 }
 
 void ofApp::drawMode3(vector<float> amplitudes){
@@ -67,19 +102,113 @@ void ofApp::drawMode3(vector<float> amplitudes){
     // YOUR CODE HERE
     ofFill(); // Drawn Shapes will be filled in with color
     ofSetColor(256); // This resets the color of the "brush" to white
-    
     for(int i=0; i < amplitudes.size(); i++){
 
         ofSetColor(rgbMode3[0], rgbMode3[1], rgbMode3[2]); 
         ofDrawRectangle(ofGetWindowWidth(),(ofGetWindowWidth()/64)*i, amplitudes[i],ofGetWindowWidth()/64);   
     }
+    if(record == true){
+            ofSetColor(255,17,0); // This resets the color of the "brush" to white
+            ofDrawBitmapString("Recording...", (ofGetWindowWidth()-100), 15);
+        }
+    if(playback == true){
+            ofSetColor(0,0,0); // This resets the color of the "brush" to white
+            ofDrawBitmapString("Replaying...", (ofGetWindowWidth()-100), 15);
+        }
           
 }
 
 //--------------------------------------------------------------
+
+void ofApp::replayKeys(char key){
+    switch(key){
+        case 'p':
+            if(playing){
+                sound.stop();
+            }else{
+                sound.play();
+            }
+            playing = !playing;
+            break;
+        case '1':
+            mode = '1';
+            ofSetBackgroundColor(0, 255, 191);
+            rgbMode1[0] = ofRandom(256);
+            rgbMode1[1] = ofRandom(256);
+            rgbMode1[2] = ofRandom(256);
+            break;
+        case '2':
+            mode = '2';
+            ofSetBackgroundColor(247, 128, 231);
+            rgbMode2[0] = ofRandom(256);
+            rgbMode2[1] = ofRandom(256);
+            break;
+        case '3':
+            mode = '3';
+            ofSetBackgroundColor(239,231,79);
+            rgbMode3[0] = ofRandom(256);
+            rgbMode3[1] = ofRandom(256);
+            rgbMode3[2] = ofRandom(256);
+            break;
+
+        case 'a':
+            visualizer_running = !visualizer_running;
+            break;
+
+        case 'd':
+            playSong("geesebeat.wav");
+            break;
+
+        case 'f':
+            playSong("beat.wav");
+            break;
+
+        case 'g':
+            playSong("pigeon-coo.wav");
+            break;
+
+        case 'h':
+            playSong("rock-song.wav");
+            break;
+
+        case 'v':
+            playSong("lasanta.wav");
+            break;
+
+        case 'b':
+            playSong("thespins.wav");
+            break;
+
+        case 'n':
+            playSong("walkingdream.wav");
+            break;
+
+        case '-':                   // Decrease volume
+            while(sound.getVolume()>0){
+                sound.setVolume(sound.getVolume()-0.1);
+                break;
+            }
+            break;
+             
+          
+        case '=':                  // Increase Volume
+            while(sound.getVolume()<1){
+                sound.setVolume(sound.getVolume()+0.1);
+                break;
+            }
+            break;
+    }
+}
+
+
+
+//--------------------------------------------------------------
 void ofApp::keyPressed(int key){
     // This method is called automatically when any key is pressed
-    switch(key){
+   
+
+    if(playback == false){
+        switch(key){
         case 'p':
             if(playing){
                 sound.stop();
@@ -159,7 +288,31 @@ void ofApp::keyPressed(int key){
                 break;
             }
             break;
+        case 'R':  
+            if (record == false){
+                record =true;
+                actions.empty();
+            }
+            else{
+                record = false;
+            }
+            break;
+        case 'P':
+            if (playback == false){
+                playback =true;
+            }
+            else{
+                playback = false;
+            }
+            break;
+
         
+    
+        
+        }
+    }
+    if(record == true){
+        actions.push_back(key);
     }
 }
 

@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "AudioVisualizer.h"
+#include <vector>
 
 class ofApp : public ofBaseApp{
 	public:
@@ -24,10 +25,11 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 		void playSong(string file);
+		void replayKeys(char key);
+
 	private:
 		ofSoundPlayer sound;
 		AudioVisualizer visualizer;
-		
 		bool playing = false;
 		char mode = '1';
 		bool visualizer_running = true;
@@ -35,4 +37,10 @@ class ofApp : public ofBaseApp{
 		double rgbMode2[2] = {ofRandom(255), ofRandom(255)};
 		string loaded_sound = "beat.wav";
 		float rgbMode3[3] = {ofRandom(256), ofRandom(256), ofRandom(256)};
+		bool record = false;
+		vector <char> actions{};
+		bool playback = false;
+		int updateCounter = 0;
+		int replayFlag = 2;
+
 };
