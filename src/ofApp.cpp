@@ -23,7 +23,7 @@ void ofApp::update(){
     }
     if(playback == true){
         
-        if(updateCounter%180 == 0){
+        if(updateCounter%120 == 0){
             if(replayFlag<actions.size()){
                  replayKeys(actions[replayFlag-2]);
                
@@ -31,10 +31,13 @@ void ofApp::update(){
             }
             else{
                 playback = false;
+                replayFlag = 0;
             }      
         }
-    }
-    updateCounter+=1;
+      
+        updateCounter+=1;
+        
+    }  
 }
 
 
@@ -205,6 +208,8 @@ void ofApp::replayKeys(char key){
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
     // This method is called automatically when any key is pressed
+
+    
    
 
     if(playback == false){
@@ -291,7 +296,7 @@ void ofApp::keyPressed(int key){
         case 'R':  
             if (record == false){
                 record =true;
-                actions.empty();
+                actions.clear();
             }
             else{
                 record = false;
@@ -311,6 +316,12 @@ void ofApp::keyPressed(int key){
         
         }
     }
+    else{
+        if(key == 'C'){
+            playback = false;
+        }
+    }
+
     if(record == true){
         actions.push_back(key);
     }

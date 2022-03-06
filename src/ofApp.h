@@ -40,7 +40,7 @@ class ofApp : public ofBaseApp{
 		bool record = false;
 		vector <char> actions{};
 		bool playback = false;
-		int updateCounter = 0;
+		int updateCounter = 119;
 		int replayFlag = 2;
 
 };
