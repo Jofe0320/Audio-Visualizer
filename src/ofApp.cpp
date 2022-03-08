@@ -160,9 +160,9 @@ void ofApp::replayKeys(char key){
             }
             if (playing) {
                 if (visualizer_running) {
-                    sound.play();
+                    sound.setPaused(false);
                 } else {
-                    sound.stop();
+                    sound.setPaused(true);
                 }
             }
             break;
@@ -262,9 +262,9 @@ void ofApp::keyPressed(int key){
 
             if (playing) {
                 if (visualizer_running) {
-                    sound.play();
+                    sound.setPaused(false);
                 } else {
-                    sound.stop();
+                    sound.setPaused(true);
                 }
             }
             break;
