@@ -155,7 +155,16 @@ void ofApp::replayKeys(char key){
             break;
 
         case 'a':
-            visualizer_running = !visualizer_running;
+            if (playing) {
+                visualizer_running = !visualizer_running;
+            }
+            if (playing) {
+                if (visualizer_running) {
+                    sound.play();
+                } else {
+                    sound.stop();
+                }
+            }
             break;
 
         case 'd':
@@ -247,8 +256,17 @@ void ofApp::keyPressed(int key){
             break;
 
         case 'a':
-            
-            visualizer_running = !visualizer_running;
+            if (playing) {
+                visualizer_running = !visualizer_running;
+            }
+
+            if (playing) {
+                if (visualizer_running) {
+                    sound.play();
+                } else {
+                    sound.stop();
+                }
+            }
             break;
 
         case 'd':

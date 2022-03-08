@@ -19,3 +19,15 @@ This is the class that brings most things together. Here, you will find the code
 
 ## AudioVisualizer
 The AudioVisualizer class provides us with the data needed to do the visualization. Using some of the tools OpenFrameworks provides us and math, we can obtain information such as the amplitude of the sound. 
+
+Yamil Morales 
+José Ortiz
+
+Songs:
+'d' key plays geesebeat.wav
+'f' key plays beat.wav
+'g' key plays pigeon-coo.wav
+'h' kye plays rock-song.wav
+'v' key plays La Santa by Bad Bunny
+'b' key plays The Spins by Mac Miller
+'n' key plays Walking On A Dream by Empire of the Sun
