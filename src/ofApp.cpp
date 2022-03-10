@@ -295,7 +295,6 @@ void ofApp::keyPressed(int key){
             if (playing) {
                 visualizer_running = !visualizer_running;
             }
-
             if (playing) {
                 if (visualizer_running) {
                     sound.setPaused(false);
@@ -348,7 +347,7 @@ void ofApp::keyPressed(int key){
                 break;
             }
             break;
-        case 'R':  
+        case 'r':  
             if (record == false){
                 record =true;
                 actions.clear();
@@ -357,7 +356,7 @@ void ofApp::keyPressed(int key){
                 record = false;
             }
             break;
-        case 'P':
+        case 't':
             if (playback == false){
                 playback =true;
             }
