@@ -10,7 +10,8 @@ void ofApp::setup(){
     sound.setLoop(true); // Makes the song loop indefinitely
     sound.setVolume(1); // Sets the song volume
     ofSetBackgroundColor(0, 255, 191);; // Sets the Background Color
-    
+    newBox.set(100,100,100);
+    newBox.setPosition(0,0,0);
 }
 
 //--------------------------------------------------------------
@@ -56,6 +57,8 @@ void ofApp::draw(){
         drawMode2(amplitudes);
     }else if(mode == '3'){
         drawMode3(amplitudes);
+    }else if(mode == '4'){
+        drawMode4(amplitudes);
     }
 }
 void ofApp::drawMode1(vector<float> amplitudes){
@@ -121,6 +124,35 @@ void ofApp::drawMode3(vector<float> amplitudes){
           
 }
 
+void ofApp::drawMode4(vector<float> amplitudes){
+    cam.begin();
+    int counter = 0;
+    int spacer = 200;
+    if(record == true){
+            ofSetColor(255,17,0); // This resets the color of the "brush" to white
+            ofDrawBitmapString("Recording...", (ofGetWindowWidth()-100), 15);
+        }
+    if(playback == true){
+            ofSetColor(0,0,0); // This resets the color of the "brush" to white
+            ofDrawBitmapString("Replaying...", (ofGetWindowWidth()-100), 15);
+        }
+    while(counter<=10){
+    
+        for(int i=0; i < amplitudes.size(); i=i+3){
+        newBox.set(ofGetWindowWidth()*5/50,amplitudes[i]*10,ofGetWindowWidth()*5/50);
+        newBox.setPosition((ofGetWindowWidth()/50)*i,100,spacer);
+        ofSetColor(rgbMode4[0], rgbMode4[1], rgbMode4[2]); 
+        newBox.draw();
+       }
+
+    counter +=1;
+    spacer += 200;
+    }
+    cam.end();
+  
+
+}
+
 //--------------------------------------------------------------
 
 void ofApp::replayKeys(char key){
@@ -153,6 +185,14 @@ void ofApp::replayKeys(char key){
             rgbMode3[1] = ofRandom(256);
             rgbMode3[2] = ofRandom(256);
             break;
+        case '4':
+            mode = '4';
+            ofSetBackgroundColor(0);
+            rgbMode4[0] = ofRandom(256);
+            rgbMode4[1] = ofRandom(256);
+            rgbMode4[2] = ofRandom(256);
+            break;
+
 
         case 'a':
             visualizer_running = !visualizer_running;
@@ -185,6 +225,10 @@ void ofApp::replayKeys(char key){
         case 'n':
             playSong("walkingdream.wav");
             break;
+            
+        case 'z':
+            playSong("LaCura.wav");
+            break;
 
         case '-':                   // Decrease volume
             while(sound.getVolume()>0){
@@ -209,8 +253,6 @@ void ofApp::replayKeys(char key){
 void ofApp::keyPressed(int key){
     // This method is called automatically when any key is pressed
 
-    
-   
 
     if(playback == false){
         switch(key){
@@ -246,6 +288,14 @@ void ofApp::keyPressed(int key){
 
             break;
 
+        case '4':
+            mode = '4';
+            ofSetBackgroundColor(0);
+            rgbMode4[0] = ofRandom(256);
+            rgbMode4[1] = ofRandom(256);
+            rgbMode4[2] = ofRandom(256);
+            break;
+
         case 'a':
             
             visualizer_running = !visualizer_running;
@@ -278,14 +328,15 @@ void ofApp::keyPressed(int key){
         case 'n':
             playSong("walkingdream.wav");
             break;
-
+         case 'z':
+            playSong("LaCura.wav");
+            break;
         case '-':                   // Decrease volume
             while(sound.getVolume()>0){
                 sound.setVolume(sound.getVolume()-0.1);
                 break;
             }
             break;
-             
           
         case '=':                  // Increase Volume
             while(sound.getVolume()<1){
@@ -310,9 +361,6 @@ void ofApp::keyPressed(int key){
                 playback = false;
             }
             break;
-
-        
-    
         
         }
     }

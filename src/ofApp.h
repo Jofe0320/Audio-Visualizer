@@ -9,10 +9,13 @@ class ofApp : public ofBaseApp{
 		void setup();
 		void update();
 		void draw();
+		ofEasyCam cam;
+		ofBoxPrimitive newBox;
 
 		void drawMode1(vector<float> amplitudes);
 		void drawMode2(vector<float> amplitudes);
 		void drawMode3(vector<float> amplitudes);
+		void drawMode4(vector<float> amplitudes);
 		void keyPressed(int key);
 		void keyReleased(int key);
 		void mouseMoved(int x, int y);
@@ -37,8 +40,9 @@ class ofApp : public ofBaseApp{
 		double rgbMode2[2] = {ofRandom(255), ofRandom(255)};
 		string loaded_sound = "beat.wav";
 		float rgbMode3[3] = {ofRandom(256), ofRandom(256), ofRandom(256)};
+		float rgbMode4[3] = {ofRandom(256), ofRandom(256), ofRandom(256)};
 		bool record = false;
-		vector <char> actions{};
+		vector <char> actions;
 		bool playback = false;
 		int updateCounter = 119;
 		int replayFlag = 2;
