@@ -25,7 +25,7 @@ void ofApp::update(){
     if(playback == true){
         if(updateCounter%120 == 0){
             if(replayFlag<actions.size()){
-                 replayKeys(actions[replayFlag-2]);
+                 replayKeys(actions[replayFlag]);
                
                  replayFlag += 1;
             }
@@ -357,7 +357,7 @@ void ofApp::keyPressed(int key){
             }
             break;
         case 't':
-            if (playback == false){
+            if (playback == false && record == false){
                 playback =true;
             }
             else{
