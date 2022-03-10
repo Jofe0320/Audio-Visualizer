@@ -35,13 +35,16 @@ class ofApp : public ofBaseApp{
 		bool playing = false;
 		char mode = '1';
 		bool visualizer_running = true;
+		// Each mode Random color
 		float rgbMode1[3] = {ofRandom(256), ofRandom(256), ofRandom(256)};
 		double rgbMode2[2] = {ofRandom(255), ofRandom(255)};
+		float rgbMode3[3] = {ofRandom(256), ofRandom(256), ofRandom(256)};
+		float rgbMode4[3] = {ofRandom(256), ofRandom(256), ofRandom(256)};
+		// Vector that contain all songs and variable to locate them
 		vector<string> songs  = {"beat.wav","geesebeat.wav","LaCura.wav","lasanta.wav","pigeon-coo.wav","rock-song.wav","thespins.wav","walkingdream.wav"};
 		int songPosition = 0;
 		string loaded_sound = songs[songPosition];
-		float rgbMode3[3] = {ofRandom(256), ofRandom(256), ofRandom(256)};
-		float rgbMode4[3] = {ofRandom(256), ofRandom(256), ofRandom(256)};
+		//Record and replay global variables
 		bool record = false;
 		vector <char> actions;
 		bool playback = false;

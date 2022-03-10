@@ -19,12 +19,10 @@ void ofApp::update(){
     /* The update method is called muliple times per second
     It's in charge of updating variables and the logic of our app */
     ofSoundUpdate(); // Updates all sound players
-   
     if (visualizer_running) {
         visualizer.updateAmplitudes(); // Updates Amplitudes for visualizer
     }
     if(playback == true){
-        
         if(updateCounter%120 == 0){
             if(replayFlag<actions.size()){
                  replayKeys(actions[replayFlag-2]);
@@ -36,14 +34,10 @@ void ofApp::update(){
                 replayFlag = 0;
             }      
         }
-      
-        updateCounter+=1;
-        
+        updateCounter+=1; 
     }  
     playSong(songs[songPosition]);
 }
-
-
 
 //--------------------------------------------------------------
 void ofApp::draw(){
@@ -63,6 +57,7 @@ void ofApp::draw(){
         drawMode4(amplitudes);
     }
 }
+
 void ofApp::drawMode1(vector<float> amplitudes){
         ofFill(); // Drawn Shapes will be filled in with color
         ofSetColor(256); // This resets the color of the "brush" to white
@@ -80,6 +75,7 @@ void ofApp::drawMode1(vector<float> amplitudes){
             ofDrawBitmapString("Replaying...", (ofGetWindowWidth()-100), 15);
         }        
 }
+
 void ofApp::drawMode2(vector<float> amplitudes){
         ofSetLineWidth(5); // Sets the line width
         ofNoFill(); // Only the outline of shapes will be drawn
@@ -122,6 +118,7 @@ void ofApp::drawMode3(vector<float> amplitudes){
           
 }
 
+//This method uses primitive object from OF to recreate mode 1 in a 3D world
 void ofApp::drawMode4(vector<float> amplitudes){
     cam.begin();
     int counter = 0;
@@ -135,7 +132,6 @@ void ofApp::drawMode4(vector<float> amplitudes){
             ofDrawBitmapString("Replaying...", (ofGetWindowWidth()-100), 15);
         }
     while(counter<=10){
-    
         for(int i=0; i < amplitudes.size(); i=i+3){
         newBox.set(ofGetWindowWidth()*5/50,amplitudes[i]*10,ofGetWindowWidth()*5/50);
         newBox.setPosition((ofGetWindowWidth()/50)*i,100,spacer);
@@ -152,7 +148,7 @@ void ofApp::drawMode4(vector<float> amplitudes){
 }
 
 //--------------------------------------------------------------
-
+//Method in charge of replaying the keys recorded
 void ofApp::replayKeys(char key){
     switch(key){
         case 'p':
@@ -190,8 +186,6 @@ void ofApp::replayKeys(char key){
             rgbMode4[1] = ofRandom(256);
             rgbMode4[2] = ofRandom(256);
             break;
-
-
         case 'a':
             if (playing) {
                 visualizer_running = !visualizer_running;
@@ -204,37 +198,35 @@ void ofApp::replayKeys(char key){
                 }
             }
             break;
-
         case 'd':
-            playSong("geesebeat.wav");
+            songPosition = 1;
             break;
 
         case 'f':
-            playSong("beat.wav");
+            songPosition =  0;
             break;
 
         case 'g':
-            playSong("pigeon-coo.wav");
+            songPosition = 4;
             break;
 
         case 'h':
-            playSong("rock-song.wav");
+            songPosition = 5;
             break;
 
         case 'v':
-            playSong("lasanta.wav");
+            songPosition = 3;
             break;
 
         case 'b':
-            playSong("thespins.wav");
+            songPosition = 6;
             break;
 
         case 'n':
-            playSong("walkingdream.wav");
+            songPosition = 7;
             break;
-            
-        case 'z':
-            playSong("LaCura.wav");
+         case 'z':
+            songPosition = 2;
             break;
 
         case '-':                   // Decrease volume
@@ -242,33 +234,13 @@ void ofApp::replayKeys(char key){
                 sound.setVolume(sound.getVolume()-0.1);
                 break;
             }
-            break;
-             
-          
+            break; 
         case '=':                  // Increase Volume
             while(sound.getVolume()<1){
                 sound.setVolume(sound.getVolume()+0.1);
                 break;
             }
             break;
-    }
-
-    if(key == OF_KEY_RIGHT) {
-        if(songPosition == songs.size()-1){
-            songPosition = 0;
-        }
-        else{
-            songPosition += 1;
-        }
-        
-    }
-    else if(key == OF_KEY_LEFT){
-        if (songPosition == 0){
-            songPosition = songs.size()-1;
-        }
-        else{
-            songPosition -=1;
-        }
     }
 }
 
@@ -277,8 +249,6 @@ void ofApp::replayKeys(char key){
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
     // This method is called automatically when any key is pressed
-
-
     if(playback == false){
         switch(key){
         case 'p':
@@ -403,13 +373,13 @@ void ofApp::keyPressed(int key){
             playback = false;
         }
     }
-
     if(record == true){
         actions.push_back(key);
     }
+
+    //Bonus skip Feature
     if (key == OF_KEY_RIGHT){
-        if (songPosition == songs.size() - 1)
-        {
+        if (songPosition == songs.size() - 1){
             songPosition = 0;
         }
         else
@@ -418,8 +388,7 @@ void ofApp::keyPressed(int key){
         }
     }
     else if (key == OF_KEY_LEFT){
-        if (songPosition == 0)
-        {
+        if (songPosition == 0){
             songPosition = songs.size() - 1;
         }
         else
@@ -427,6 +396,7 @@ void ofApp::keyPressed(int key){
             songPosition -= 1;
         }
     }
+
 }
 
 void ofApp::playSong(string file) {
