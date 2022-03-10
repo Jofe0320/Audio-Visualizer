@@ -19,6 +19,7 @@ void ofApp::update(){
     /* The update method is called muliple times per second
     It's in charge of updating variables and the logic of our app */
     ofSoundUpdate(); // Updates all sound players
+   
     if (visualizer_running) {
         visualizer.updateAmplitudes(); // Updates Amplitudes for visualizer
     }
@@ -39,6 +40,7 @@ void ofApp::update(){
         updateCounter+=1;
         
     }  
+    playSong(songs[songPosition]);
 }
 
 
@@ -76,11 +78,7 @@ void ofApp::drawMode1(vector<float> amplitudes){
         if(playback == true){
             ofSetColor(0,0,0); // This resets the color of the "brush" to white
             ofDrawBitmapString("Replaying...", (ofGetWindowWidth()-100), 15);
-        }
-
-
-
-        
+        }        
 }
 void ofApp::drawMode2(vector<float> amplitudes){
         ofSetLineWidth(5); // Sets the line width
@@ -254,6 +252,24 @@ void ofApp::replayKeys(char key){
             }
             break;
     }
+
+    if(key == OF_KEY_RIGHT) {
+        if(songPosition == songs.size()-1){
+            songPosition = 0;
+        }
+        else{
+            songPosition += 1;
+        }
+        
+    }
+    else if(key == OF_KEY_LEFT){
+        if (songPosition == 0){
+            songPosition = songs.size()-1;
+        }
+        else{
+            songPosition -=1;
+        }
+    }
 }
 
 
@@ -320,34 +336,34 @@ void ofApp::keyPressed(int key){
             break;
 
         case 'd':
-            playSong("geesebeat.wav");
+            songPosition = 1;
             break;
 
         case 'f':
-            playSong("beat.wav");
+            songPosition =  0;
             break;
 
         case 'g':
-            playSong("pigeon-coo.wav");
+            songPosition = 4;
             break;
 
         case 'h':
-            playSong("rock-song.wav");
+            songPosition = 5;
             break;
 
         case 'v':
-            playSong("lasanta.wav");
+            songPosition = 3;
             break;
 
         case 'b':
-            playSong("thespins.wav");
+            songPosition = 6;
             break;
 
         case 'n':
-            playSong("walkingdream.wav");
+            songPosition = 7;
             break;
          case 'z':
-            playSong("LaCura.wav");
+            songPosition = 2;
             break;
         case '-':                   // Decrease volume
             while(sound.getVolume()>0){
@@ -383,13 +399,33 @@ void ofApp::keyPressed(int key){
         }
     }
     else{
-        if(key == 'C'){
+        if(key == 'c'){
             playback = false;
         }
     }
 
     if(record == true){
         actions.push_back(key);
+    }
+    if (key == OF_KEY_RIGHT){
+        if (songPosition == songs.size() - 1)
+        {
+            songPosition = 0;
+        }
+        else
+        {
+            songPosition += 1;
+        }
+    }
+    else if (key == OF_KEY_LEFT){
+        if (songPosition == 0)
+        {
+            songPosition = songs.size() - 1;
+        }
+        else
+        {
+            songPosition -= 1;
+        }
     }
 }
 

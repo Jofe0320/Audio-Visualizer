@@ -11,7 +11,6 @@ class ofApp : public ofBaseApp{
 		void draw();
 		ofEasyCam cam;
 		ofBoxPrimitive newBox;
-
 		void drawMode1(vector<float> amplitudes);
 		void drawMode2(vector<float> amplitudes);
 		void drawMode3(vector<float> amplitudes);
@@ -38,7 +37,9 @@ class ofApp : public ofBaseApp{
 		bool visualizer_running = true;
 		float rgbMode1[3] = {ofRandom(256), ofRandom(256), ofRandom(256)};
 		double rgbMode2[2] = {ofRandom(255), ofRandom(255)};
-		string loaded_sound = "beat.wav";
+		vector<string> songs  = {"beat.wav","geesebeat.wav","LaCura.wav","lasanta.wav","pigeon-coo.wav","rock-song.wav","thespins.wav","walkingdream.wav"};
+		int songPosition = 0;
+		string loaded_sound = songs[songPosition];
 		float rgbMode3[3] = {ofRandom(256), ofRandom(256), ofRandom(256)};
 		float rgbMode4[3] = {ofRandom(256), ofRandom(256), ofRandom(256)};
 		bool record = false;
