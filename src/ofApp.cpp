@@ -28,10 +28,6 @@ void ofApp::update(){
         if(updateCounter%120 == 0){
             if(replayFlag<actions.size()){
                  replayKeys(actions[replayFlag]);
-<<<<<<< HEAD
-               
-=======
->>>>>>> try-to-mejorar-mode-4
                  replayFlag += 1;
             }
             else{
