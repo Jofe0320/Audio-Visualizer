@@ -35,6 +35,9 @@ class ofApp : public ofBaseApp{
 		bool playing = false;
 		char mode = '1';
 		bool visualizer_running = true;
+		glm::vec3 camPosition = {1500,1000,4000};
+		glm::vec3 camAngle  = {-15,15,0};
+		ofLight light;
 		// Each mode Random color
 		float rgbMode1[3] = {ofRandom(256), ofRandom(256), ofRandom(256)};
 		double rgbMode2[2] = {ofRandom(255), ofRandom(255)};
