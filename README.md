@@ -18,8 +18,10 @@ This project contains two classes that should be of your concern: ofApp and Audi
 This is the class that brings most things together. Here, you will find the code that causes the audio to play and pause. It is also to where the visualization happens. Here, you can observe how the code to change between modes works, and how the song is actually played. 
 
 ## AudioVisualizer
-The AudioVisualizer class provides us with the data needed to do the visualization. Using some of the tools OpenFrameworks provides us and math, we can obtain information such as the amplitude of the sound. 
+The AudioVisualizer class provides us with the data needed to do the visualization. Using some of the tools OpenFrameworks provides us and math, we can obtain information such as the amplitude of the sound.
 
+
+***********************************************
 Yamil Morales 
 José Ortiz
 
@@ -31,3 +33,8 @@ Songs:
 'v' key plays La Santa by Bad Bunny
 'b' key plays The Spins by Mac Miller
 'n' key plays Walking On A Dream by Empire of the Sun
+'z' key plays La Cura by Frankie Ruiz
+
+Record-Mode
+Used the the update method to cheq when every two second is complete using the % operator. The proceeded to do every action again.
+

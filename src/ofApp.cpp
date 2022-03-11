@@ -1,7 +1,5 @@
 #include "ofApp.h"
 #include <vector>
-
-
 using namespace std;
 
 //--------------------------------------------------------------
@@ -12,6 +10,10 @@ void ofApp::setup(){
     ofSetBackgroundColor(0, 255, 191);; // Sets the Background Color
     newBox.set(100,100,100);
     newBox.setPosition(0,0,0);
+    cam.setGlobalPosition(camPosition);
+    cam.setOrientation(camAngle);
+    light.setPosition(cam.getPosition());
+    
 }
 
 //--------------------------------------------------------------
@@ -25,8 +27,7 @@ void ofApp::update(){
     if(playback == true){
         if(updateCounter%120 == 0){
             if(replayFlag<actions.size()){
-                 replayKeys(actions[replayFlag-2]);
-               
+                 replayKeys(actions[replayFlag]);
                  replayFlag += 1;
             }
             else{
@@ -103,7 +104,6 @@ void ofApp::drawMode3(vector<float> amplitudes){
     ofFill(); // Drawn Shapes will be filled in with color
     ofSetColor(256); // This resets the color of the "brush" to white
     for(int i=0; i < amplitudes.size(); i++){
-
         ofSetColor(rgbMode3[0], rgbMode3[1], rgbMode3[2]); 
         ofDrawRectangle(ofGetWindowWidth(),(ofGetWindowWidth()/64)*i, amplitudes[i],ofGetWindowWidth()/64);   
     }
@@ -114,23 +114,16 @@ void ofApp::drawMode3(vector<float> amplitudes){
     if(playback == true){
             ofSetColor(0,0,0); // This resets the color of the "brush" to white
             ofDrawBitmapString("Replaying...", (ofGetWindowWidth()-100), 15);
-        }
-          
+        }     
 }
 
 //This method uses primitive object from OF to recreate mode 1 in a 3D world
 void ofApp::drawMode4(vector<float> amplitudes){
+    ofEnableDepthTest();
+    light.enable();
     cam.begin();
     int counter = 0;
     int spacer = 200;
-    if(record == true){
-            ofSetColor(255,17,0); // This resets the color of the "brush" to white
-            ofDrawBitmapString("Recording...", (ofGetWindowWidth()-100), 15);
-        }
-    if(playback == true){
-            ofSetColor(0,0,0); // This resets the color of the "brush" to white
-            ofDrawBitmapString("Replaying...", (ofGetWindowWidth()-100), 15);
-        }
     while(counter<=10){
         for(int i=0; i < amplitudes.size(); i=i+3){
         newBox.set(ofGetWindowWidth()*5/50,amplitudes[i]*10,ofGetWindowWidth()*5/50);
@@ -138,13 +131,12 @@ void ofApp::drawMode4(vector<float> amplitudes){
         ofSetColor(rgbMode4[0], rgbMode4[1], rgbMode4[2]); 
         newBox.draw();
        }
-
     counter +=1;
     spacer += 200;
     }
+    light.setPosition(cam.getPosition());
     cam.end();
-  
-
+    ofDisableDepthTest();
 }
 
 //--------------------------------------------------------------
@@ -181,7 +173,7 @@ void ofApp::replayKeys(char key){
             break;
         case '4':
             mode = '4';
-            ofSetBackgroundColor(0);
+            ofSetBackgroundColor(135,206,235);
             rgbMode4[0] = ofRandom(256);
             rgbMode4[1] = ofRandom(256);
             rgbMode4[2] = ofRandom(256);
@@ -285,7 +277,7 @@ void ofApp::keyPressed(int key){
 
         case '4':
             mode = '4';
-            ofSetBackgroundColor(0);
+            ofSetBackgroundColor(135,206,235);
             rgbMode4[0] = ofRandom(256);
             rgbMode4[1] = ofRandom(256);
             rgbMode4[2] = ofRandom(256);
