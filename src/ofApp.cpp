@@ -68,11 +68,11 @@ void ofApp::drawMode1(vector<float> amplitudes){
             ofDrawRectangle((ofGetWindowWidth()/64)*i, ofGetHeight()-100, ofGetWindowWidth()/64, amplitudes[i]);   
         }
         if(record == true){
-            ofSetColor(255,17,0); // This resets the color of the "brush" to white
+            ofSetColor(255,17,0); 
             ofDrawBitmapString("Recording...", (ofGetWindowWidth()-100), 15);
         }
         if(playback == true){
-            ofSetColor(0,0,0); // This resets the color of the "brush" to white
+            ofSetColor(0,0,0); 
             ofDrawBitmapString("Replaying...", (ofGetWindowWidth()-100), 15);
         }        
 }
@@ -88,11 +88,11 @@ void ofApp::drawMode2(vector<float> amplitudes){
             ofDrawCircle(ofGetWidth()/2, ofGetHeight()/2, amplitudes[0]/(i +1));
         }
          if(record == true){
-            ofSetColor(255,17,0); // This resets the color of the "brush" to white
+            ofSetColor(255,17,0); 
             ofDrawBitmapString("Recording...", (ofGetWindowWidth()-100), 15);
         }
           if(playback == true){
-            ofSetColor(0,0,0); // This resets the color of the "brush" to white
+            ofSetColor(0,0,0); 
             ofDrawBitmapString("Replaying...", (ofGetWindowWidth()-100), 15);
         }
 }
