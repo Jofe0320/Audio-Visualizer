@@ -25,7 +25,7 @@ void ofApp::update(){
         visualizer.updateAmplitudes(); // Updates Amplitudes for visualizer
     }
     if(playback == true){
-        if(updateCounter%120 == 0){ // fixed interval delay for playback
+        if(updateCounter%120 == 0){ // fixed interval delay for playback 120 = 2s
             if(replayFlag<actions.size()){
                  replayKeys(actions[replayFlag]);
                  replayFlag += 1;
@@ -108,11 +108,11 @@ void ofApp::drawMode3(vector<float> amplitudes){
         ofDrawRectangle(ofGetWindowWidth(),(ofGetWindowWidth()/64)*i, amplitudes[i],ofGetWindowWidth()/64);   
     }
     if(record == true){
-            ofSetColor(255,17,0); // This resets the color of the "brush" to white
+            ofSetColor(255,17,0); 
             ofDrawBitmapString("Recording...", (ofGetWindowWidth()-100), 15);
         }
     if(playback == true){
-            ofSetColor(0,0,0); // This resets the color of the "brush" to white
+            ofSetColor(0,0,0); 
             ofDrawBitmapString("Replaying...", (ofGetWindowWidth()-100), 15);
         }     
 }
@@ -389,7 +389,7 @@ void ofApp::keyPressed(int key){
     }
 
 }
-
+//method that play the input song
 void ofApp::playSong(string file) {
     if (playing && loaded_sound != file) {
         sound.stop();

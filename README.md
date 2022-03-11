@@ -34,8 +34,22 @@ Songs:
 'b' key plays The Spins by Mac Miller
 'n' key plays Walking On A Dream by Empire of the Sun
 'z' key plays La Cura by Frankie Ruiz
-Left and right arrow keys also change between songs
 
 Record-Mode
-Used the the update method to cheq when every two second is complete using the % operator. The proceeded to do every action again.
+Used the the update method to cheq when every two second is complete using the % operator. Then proceeded to do every action again every 120 ticks (2s)
+ record with 'r'
+ replay with 't'
+
+
+Bonus Specs
+Mode 4 : 3d representation of mode 1; Instead of bars there are boxes move with the music.
+      - Using the mouse you can:
+         - navegate through the 3d world to see the shapes from different angles 
+         -zoom in an zoom out as you will do in any web page
+Skip foward and backwards:
+       -with the left arrow key skip backward a song in the vector of songs
+       -with the righ arrow key skip fowards a song in the vector
+        
+
+
 
