@@ -25,7 +25,7 @@ void ofApp::update(){
         visualizer.updateAmplitudes(); // Updates Amplitudes for visualizer
     }
     if(playback == true){
-        if(updateCounter%120 == 0){
+        if(updateCounter%120 == 0){ // fixed interval delay for playback
             if(replayFlag<actions.size()){
                  replayKeys(actions[replayFlag]);
                  replayFlag += 1;
@@ -360,7 +360,7 @@ void ofApp::keyPressed(int key){
         }
     }
     else{
-        if(key == 'c'){
+        if(key == 'c'){ // cancels playback
             playback = false;
         }
     }

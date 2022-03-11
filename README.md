@@ -22,18 +22,19 @@ The AudioVisualizer class provides us with the data needed to do the visualizati
 
 
 ***********************************************
-Yamil Morales 
-José Ortiz
+Yamil Morales - yamil.morales7@upr.edu
+José Ortiz - jose.ortiz107@upr.edu
 
 Songs:
 'd' key plays geesebeat.wav
 'f' key plays beat.wav
 'g' key plays pigeon-coo.wav
-'h' kye plays rock-song.wav
+'h' key plays rock-song.wav
 'v' key plays La Santa by Bad Bunny
 'b' key plays The Spins by Mac Miller
 'n' key plays Walking On A Dream by Empire of the Sun
 'z' key plays La Cura by Frankie Ruiz
+Left and right arrow keys also change between songs
 
 Record-Mode
 Used the the update method to cheq when every two second is complete using the % operator. The proceeded to do every action again.
